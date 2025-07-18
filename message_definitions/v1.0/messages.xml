@@ -434,7 +434,18 @@
       <field name="cycle_time" type="uint32" unit="ms"/>
     </message>
 
-    <!-- 51 is free -->
+    <message name="GROUND_DETECT" id="51">
+      <description>
+        Ground detection status.
+      </description>
+      <field name="ground_detected" type="uint8" values="FALSE|TRUE">Bool whether ground is detected or not</field>
+      <field name="vspeed_ned" type="float" unit="m/s">Vertical speed in NED frame</field>
+      <field name="spec_thrust_down" type="float" unit="N">Specific thrust down</field>
+      <field name="accel_filt_down" type="float" unit="m/s^2">Filtered vertical acceleration</field>
+      <field name="agl_dist_filt" type="float" unit="m">Filtered AGL distance</field>
+      <field name="hx711" type="uint8" values="FALSE|TRUE">Whether the hx711 module detects ground (strain gauges)</field>
+      <field name="triggers" type="uint16">Bitmask containing status information on the different ground detect triggers</field>
+    </message>
 
     <message name="MPPT" id="52">
       <field name="values" type="int16[]" alt_unit_coef="1e-3"/>
@@ -1769,7 +1780,7 @@
       <field name="jerk_E_ref"    type="float"    unit="m/s^3"/>
       <field name="jerk_D_ref"    type="float"    unit="m/s^3"/>
     </message>
-
+    
     <message name="EFF_MAT_STAB" id="185">
       <field name="G1_roll"   type="float[]" unit="none"/>
       <field name="G1_pitch"  type="float[]" unit="none"/>
@@ -1783,7 +1794,7 @@
       <field name="G1_aE"     type="float[]" unit="none"/>
       <field name="G1_aD"     type="float[]" unit="none"/>
     </message>
-
+ 
     <message name="WLS_V" id="187">
       <field name="loop"                type="char[]"/>
       <field name="gamma"               type="float"    />
@@ -1809,7 +1820,7 @@
       <field name="lon"   type="int32"/>
       <field name="alt"   type="float"/>
     </message>
-
+    
     <message name= "ACTUATORS_T4_IN" id="190">
       <description>Received informational data from T4 Actuator Board, only used for debugging and logging</description>
       <field name="esc_1_rpm" type="int16" unit="rpm">ESC 1 RPM telemetry</field>
@@ -1855,7 +1866,7 @@
       <field name="esc_2_voltage" type="int16">ESC 2 voltage in mV</field>
       <field name="esc_3_voltage" type="int16">ESC 3 voltage in mV</field>
       <field name="esc_4_voltage" type="int16">ESC 4 voltage in mV</field>
-     </message>
+    </message>
 
      <message name= "ACTUATORS_T4_OUT" id="191">
       <description>Transmitted commanded data to a T4 actuator board, only used for debugging and logging</description>
@@ -1881,7 +1892,10 @@
       <field name="actuators_t4_rolling_msg_out_id" type="uint8">T4 output Rolling message ID</field>
      </message>
   
-    <!-- 192 is free -->
+    <message name="HX711" id="192">
+      <field name="freq" type="float" unit="Hz">Frequency of the HX711</field>
+      <field name="meas" type="float[]">HX711 measurement</field>
+    </message>
 
     <message name="AHRS_LKF" id="193">
       <field name="phi"   type="float" unit="rad"   alt_unit="deg"   alt_unit_coef="57.29578" />
